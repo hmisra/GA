@@ -3,9 +3,11 @@ import java.util.Comparator;
 import java.util.Random;
 
 public class GeneticAlgorithm {
-
+	//the target String which we are trying to produce
 	static String targetString="I am a Monkey".toUpperCase();
+	//the probability with which mutation would occur
 	static final int MUTATIONRATE=50;
+	//the probability with which cataclysm would occur
 	static final int CATACLYSMRATE=80;
 
 	public static void main(String[] args) throws Exception {
@@ -73,7 +75,7 @@ public class GeneticAlgorithm {
 
 
 	}
-
+	//Function to calculate levenshtien distance between 2 strings
 	public static int levenshteinDistance(String str1, String str2)
 	{
 		int [][] cost= new int[str1.length()+1][str2.length()+1];
@@ -109,18 +111,10 @@ public class GeneticAlgorithm {
 			}
 		}
 
-		//		for(int i=0;i<=str1.length();i++)
-		//		{
-		//			for(int j=0;j<=str2.length();j++)
-		//			{
-		//				System.out.print(cost[i][j]+" ");
-		//			}
-		//			System.out.println();
-		//		}
 		return cost[str1.length()][str2.length()];
 	}
 
-	//function to reproduce a child
+	//function to reproduce a child by taking the parts from 2 parent strings
 	public static String reproduce(String parent1, String parent2) throws Exception
 	{
 
@@ -169,7 +163,7 @@ public class GeneticAlgorithm {
 		}
 		return population;
 	}
-
+	//Function to randomly select the 2 parent sentences for reproduction by selecting emulating the Natural Slection
 	public static String[] randomSelection(String[] population)
 	{
 
@@ -190,7 +184,7 @@ public class GeneticAlgorithm {
 		}
 		return parents;
 	}
-
+	//Comparator class to sort the strings according to their Levenshtien Distance
 	public static class costSort implements Comparator<String>
 	{
 		public int compare(String c1, String c2)
